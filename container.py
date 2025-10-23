@@ -12,6 +12,9 @@ from servicios.ordenesplc_service import OrdenesPlcService
 from servicios.usuarios_service import UsuariosService
 from servicios.listarusuarios_service import ListarUsuariosService
 from servicios.listarunidades_service import ListarUnidadesService
+from servicios.datos_service import DatosService
+from servicios.connectionstats_service import ConnectionStatsService
+from servicios.debugid_service import DebugIdService
 
 from repositorios.repodatos import RepoDatos
 
@@ -33,6 +36,9 @@ class Container(containers.DeclarativeContainer):
                  "resources.usuarios_resource",
                  "resources.listarusuarios_resource",
                  "resources.listarunidades_resource",
+                 "resources.datos_resource",
+                "resources.connectionstats_resource",
+                "resources.debugid_resource",
                  
                  ]
     )
@@ -69,6 +75,9 @@ class Container(containers.DeclarativeContainer):
     usuarios_service = providers.Factory(UsuariosService, repositorio=repo, logger=logger)
     listarusuarios_service = providers.Factory(ListarUsuariosService, repositorio=repo, logger=logger)
     listarunidades_service = providers.Factory(ListarUnidadesService, repositorio=repo, logger=logger)
+    datos_service = providers.Factory(DatosService, repositorio=repo, logger=logger)
+    connectionstats_service = providers.Factory(ConnectionStatsService, repositorio=repo, logger=logger)
+    debugid_service = providers.Factory(DebugIdService, repositorio=repo, logger=logger)
 
     
 

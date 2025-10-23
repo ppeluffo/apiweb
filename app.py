@@ -18,6 +18,9 @@ from resources import ordenesplc_resource
 from resources import usuarios_resource
 from resources import listarusuarios_resource
 from resources import listarunidades_resource
+from resources import datos_resource
+from resources import connectionstats_resource
+from resources import debugid_resource
 
 from container import Container
 
@@ -43,6 +46,9 @@ def create_app(gunicorn: bool = False):
     api.add_resource( usuarios_resource.UsuarioResource, '/apiweb/usuarios')
     api.add_resource( listarusuarios_resource.ListarUsuariosResource, '/apiweb/listarusuarios')
     api.add_resource( listarunidades_resource.ListarUnidadesResource, '/apiweb/listarunidades')
+    api.add_resource( datos_resource.DatosResource, '/apiweb/datos')
+    api.add_resource( connectionstats_resource.ConnectionStatsResource, '/apiweb/connectionstats')
+    api.add_resource( debugid_resource.DebugIdResource, '/apiweb/debugid')
 
     return app
 

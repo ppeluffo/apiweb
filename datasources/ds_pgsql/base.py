@@ -1,6 +1,6 @@
 #!/home/pablo/Spymovil/python/proyectos/APICOMMS_2025/.venv/bin/python3
 
-from apidatos.config import settings
+from deprecated_apidatos.config import settings
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker

@@ -227,3 +227,41 @@ class ApiBdPgsql:
 
     ########################################################################
 
+    def read_data_chunk(self, data_ptr=None):
+        """
+        """
+        self.logger.debug("")
+
+        # Leo un chunk de datos desde el ultimo enviado
+        try:
+            with self.session_factory() as session:
+                chunk_data = session.query(Online).filter(Online.id > data_ptr).limit(settings.MAX_CHUNK_SIZE).all()
+                if len(chunk_data) == 0:
+                    d_rsp = { 'status_code': 204, 'chunk_data': chunk_data}
+                else:
+                    d_rsp = { 'status_code': 200, 'chunk_data': chunk_data}        
+
+        except Exception as e:
+            self.logger.error(f"{e}")
+            d_rsp = {'status_code': 502,  'msg':f"{e}" }
+
+        return d_rsp
+    
+    def update_data_ptr(self, user_id=None, data_ptr=None ):
+        """
+        """
+        self.logger.debug("")    
+        
+        try:
+            with self.session_factory() as session:
+                user = session.query(Usuarios).filter(Usuarios.user_id == user_id).first()
+                user.data_ptr = data_ptr
+                session.commit()
+                d_rsp = { 'status_code': 200}
+
+        except Exception as e:
+            self.logger.error(f"{e}")
+            d_rsp = {'status_code': 502,  'msg':f"{e}" }
+
+        return d_rsp
+        

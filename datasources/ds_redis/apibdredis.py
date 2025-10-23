@@ -137,4 +137,51 @@ class ApiBdRedis:
 
     ############################################################
 
+    def read_timestamps(self):
+        """
+        Leo todo el hash TIMESTAMP.
+        Las claves son las unit_id
+        Los valores son los timestamps pickeados.
+        La redis me da un diccionario.
+        """
+        self.logger.debug(f"")
 
+        try:
+            d_pk_timestamp = self.rh.hgetall( 'TIMESTAMP' )
+            d_rsp = {'status_code': 200, 'd_pk_timestamp': d_pk_timestamp }
+
+        except Exception as e:
+            self.logger.error( f"Redis Error {e}")
+            d_rsp = {'status_code': 502,  'msg':f"{e}" }
+        # 
+        return d_rsp       
+
+    def get_debug_unit(self):
+        """
+        """
+        self.logger.debug(f"")
+
+        try:
+            debug_id = self.rh.hget('SPCOMMS', 'DEBUG_ID')
+            d_rsp = {'status_code': 200, 'debug_id': debug_id }
+
+        except Exception as e:
+            self.logger.error( f"Redis Error {e}")
+            d_rsp = {'status_code': 502,  'msg':f"{e}" }
+        # 
+        return d_rsp  
+
+    def set_debug_unit(self, unit=None):
+        """
+        """
+        self.logger.debug(f"")
+
+        try:
+            _ = self.rh.hset('SPCOMMS', 'DEBUG_ID', unit )
+            d_rsp = {'status_code': 200 }
+
+        except Exception as e:
+            self.logger.error( f"Redis Error {e}")
+            d_rsp = {'status_code': 502,  'msg':f"{e}" }
+        # 
+        return d_rsp 

@@ -18,6 +18,8 @@ BDREDIS_HOST = os.environ.get('BDREDIS_HOST','127.0.0.1')
 BDREDIS_PORT = os.environ.get('BDREDIS_PORT','6379')
 BDREDIS_DB = os.environ.get('BDREDIS_DB','0')
 
+# Maxima cantidad de lineas de datos leidas por operacion
+MAX_CHUNK_SIZE = os.environ.get('MAX_CHUNK_SIZE', 10)
 
 # DEBUG->INFO->ERROR
 LOG_LEVEL = os.environ.get('LOG_LEVEL','DEBUG')

@@ -139,3 +139,41 @@ class RepoDatos:
         
         return self.ds_pgsql.listar_configuracion_plcs()
 
+    #####################################################################################
+    # PGSQL
+    
+    def read_data_chunk(self, data_ptr=None):
+        """
+        """
+        self.logger.debug("")
+        return self.ds_pgsql.read_data_chunk(data_ptr)
+    
+    def update_data_ptr(self, user_id=None, data_ptr=None ):
+        """
+        """
+        self.logger.debug("")
+        return self.ds_pgsql.update_data_ptr(user_id, data_ptr )
+
+    #####################################################################################
+    # REDIS
+
+    def read_timestamps(self):
+        """
+        """
+        self.logger.debug("")
+        return self.ds_redis.read_timestamps()
+    
+    def get_debug_unit(self):
+        """
+        """
+        self.logger.debug("")
+        return self.ds_redis.get_debug_unit()
+
+    def set_debug_unit(self, unit=None):
+        """
+        """
+        self.logger.debug("")
+        return self.ds_redis.set_debug_unit(unit)
+
+    #####################################################################################
+    
